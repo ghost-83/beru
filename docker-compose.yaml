@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  ###############################################################################################################
+  #   BERU
+  ###############################################################################################################
+
+  beru:
+    build: ./
+    container_name: beru
+    restart: always
+    environment:
+      _JAVA_OPTIONS: "-Xms1G -Xmx1G"
+      SECRET: "UFqnXDL2vKK7WN7AlLiNTfYZSWaLBLnCq7hZXY++4DE="
+    ports:
+      - "8080:8080"
+
+  ###############################################################################################################
+  #   NGINX
+  ###############################################################################################################
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./templates:/etc/nginx/templates
+      - ./dist:/usr/share/nginx/html/
+    environment:
+      - NGINX_HOST=localhost
+      - NGINX_PORT=80
+    ports:
+      - "8085:80"
+    links:
+      - beru
+    depends_on:
+      - beru

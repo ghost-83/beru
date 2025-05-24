@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: beru
+
+beru:
+  max-age: 86400
+  secret: ${SECRET:9XjK2r7s8BshZdKpMM6r5zh2+KN5iaiAZ82J9Cn3rG8=}
+
+app:
+  users:
+    - username: user
+      password: password
+      roles: USER
+    - username: admin
+      password: adminpass
+      roles: ADMIN
