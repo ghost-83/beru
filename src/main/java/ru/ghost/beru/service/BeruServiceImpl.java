@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.ghost.beru.model.BeruGridState;
 import ru.ghost.beru.type.Step;
 
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
@@ -15,7 +14,7 @@ public class BeruServiceImpl implements BeryService {
 
     @NonNull
     @Override
-    public String getNewMap(@NonNull String username) {
+    public String getMap(@NonNull String username) {
         var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
         return toHtml(state);
     }
@@ -36,7 +35,8 @@ public class BeruServiceImpl implements BeryService {
         return toHtml(state);
     }
 
-    public String toHtml(@NonNull BeruGridState state) {
+    @NonNull
+    private String toHtml(@NonNull BeruGridState state) {
 
         StringBuilder sb = new StringBuilder();
         sb.append("<table border='1' style='border-collapse:collapse;'>");

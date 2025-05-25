@@ -7,7 +7,9 @@ services:
   ###############################################################################################################
 
   beru:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
     container_name: beru
     restart: always
     environment:

@@ -16,7 +16,7 @@ public class BeruController {
 
     @GetMapping("/get-matrix")
     public String getAntGrid(@AuthenticationPrincipal UserDetails user) {
-        return beryService.getNewMap(user.getUsername());
+        return beryService.getMap(user.getUsername());
     }
 
     @PostMapping("/step")
