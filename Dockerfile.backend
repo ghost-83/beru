@@ -1,8 +1,14 @@
+FROM maven:3.9.6-eclipse-temurin-17 AS build-java
+WORKDIR /app/beru
+COPY /pom.xml .
+COPY /src ./src
+RUN mvn package -DskipTests
+
 FROM openjdk:17.0.1-jdk
 
-WORKDIR /usr/src/ghost_main
+WORKDIR /usr/src/beru
 
-COPY ./target/beru.jar /usr/src/ghost_main
+COPY --from=build-java /app/beru/target/beru.jar /usr/src/beru/beru.jar
 
 EXPOSE 8080
 
