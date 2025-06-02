@@ -64,4 +64,13 @@ class BeruServiceImplTest {
         assertEquals(expected, actual);
     }
 
+    @Test
+    void getMaxStep() {
+
+        var username = "userMax";
+
+        var testData = beruService.getMaxStep(username);
+
+        assertEquals(148848, testData);
+    }
 }

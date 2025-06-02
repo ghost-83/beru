@@ -20,7 +20,12 @@ public class BeruController {
     }
 
     @PostMapping("/step")
-    public String getAntGrid(@RequestBody Step step, @AuthenticationPrincipal UserDetails user) {
+    public String stepAntGrid(@RequestBody Step step, @AuthenticationPrincipal UserDetails user) {
         return beryService.stepToMap(step, user.getUsername());
+    }
+
+    @GetMapping("/get-max-step")
+    public Integer getMaxStep(@AuthenticationPrincipal UserDetails user) {
+        return beryService.getMaxStep(user.getUsername());
     }
 }

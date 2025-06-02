@@ -24,15 +24,20 @@ public class BeruServiceImpl implements BeryService {
     public String stepToMap(@NonNull Step step, @NonNull String username) {
 
         var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
-
-        switch (step) {
-            case UP -> state.moveUp();
-            case DOWN -> state.moveDown();
-            case LEFT -> state.moveLeft();
-            case RIGHT -> state.moveRight();
-        }
-
+        state.move(step);
         return toHtml(state);
+    }
+
+    @NonNull
+    @Override
+    public Integer getMaxStep(@NonNull String username) {
+
+        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
+
+        if (state.getMaxSteps() == 0)
+            state.countReachableCells();
+
+        return state.getMaxSteps();
     }
 
     @NonNull

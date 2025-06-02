@@ -10,4 +10,7 @@ public interface BeryService {
 
     @NonNull
     String stepToMap(@NonNull Step step, @NonNull String username);
+
+    @NonNull
+    Integer getMaxStep(@NonNull String username);
 }
