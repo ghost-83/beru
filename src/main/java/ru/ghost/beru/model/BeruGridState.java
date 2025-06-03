@@ -14,10 +14,16 @@ public class BeruGridState {
 
     private final int gridSizeX = 40;
     private final int gridSizeY = 100;
-    private final int limit = 25;
-    private int antX = 1000;
-    private int antY = 1000;
+    private final int limit;
+    private int antX;
+    private int antY;
     private int maxSteps = 0;
+
+    public BeruGridState(int antX, int antY, int limit) {
+        this.antX = antX;
+        this.antY = antY;
+        this.limit = limit;
+    }
 
     public boolean isAccessible(int x, int y) {
         return sumDigits(Math.abs(x)) + sumDigits(Math.abs(y)) <= limit;

@@ -3,9 +3,14 @@ spring:
     name: beru
 
 beru:
+  # Создать неслодько карт, добавить запоминание по каким пользователь ходил ячейкам. Игра окончена когда посетят все.
+  start-x: 1000
+  start-y: 1000
+  limit: 25
   max-age: 86400
-  secret: ${SECRET:9XjK2r7s8BshZdKpMM6r5zh2+KN5iaiAZ82J9Cn3rG8=}
+  secret: ${SECRET:9XjK2r7s8BshZdKpMM6r5zh2+KN5iaiAZ82J9Cn3rG8=} # Вынести в хранилище паролей
 
+# Вынести в БД
 app:
   users:
     - username: user

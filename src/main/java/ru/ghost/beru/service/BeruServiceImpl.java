@@ -1,5 +1,6 @@
 package ru.ghost.beru.service;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import ru.ghost.beru.model.BeruGridState;
@@ -10,12 +11,21 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class BeruServiceImpl implements BeryService {
 
+    @Value("${beru.start-x}")
+    private Integer startX;
+
+    @Value("${beru.start-y}")
+    private Integer startY;
+
+    @Value("${beru.limit}")
+    private Integer limit;
+
     private final ConcurrentHashMap<String, BeruGridState> stateMap = new ConcurrentHashMap<>();
 
     @NonNull
     @Override
     public String getMap(@NonNull String username) {
-        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
+        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState(startX, startY, limit));
         return toHtml(state);
     }
 
@@ -23,7 +33,7 @@ public class BeruServiceImpl implements BeryService {
     @Override
     public String stepToMap(@NonNull Step step, @NonNull String username) {
 
-        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
+        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState(startX, startY, limit));
         state.move(step);
         return toHtml(state);
     }
@@ -32,7 +42,7 @@ public class BeruServiceImpl implements BeryService {
     @Override
     public Integer getMaxStep(@NonNull String username) {
 
-        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState());
+        var state = stateMap.computeIfAbsent(username, (s) -> new BeruGridState(startX, startY, limit));
 
         if (state.getMaxSteps() == 0)
             state.countReachableCells();

@@ -9,5 +9,20 @@
       "name": "beru.max-age",
       "type": "java.lang.Integer",
       "description": "Description for beru.max-age."
+    },
+    {
+      "name": "beru.start-x",
+      "type": "java.lang.Integer",
+      "description": "Description for beru.start-x."
+    },
+    {
+      "name": "beru.start-y",
+      "type": "java.lang.Integer",
+      "description": "Description for beru.start-y."
+    },
+    {
+      "name": "beru.limit",
+      "type": "java.lang.Integer",
+      "description": "Description for beru.limit."
     }
   ] }
